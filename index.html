@@ -9,68 +9,65 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="دكتور فرن">
 
-<link rel="icon" href="https://i.ibb.co/C3Ym8PZ/1000353372.jpg">
-<link rel="apple-touch-icon" href="https://i.ibb.co/C3Ym8PZ/1000353372.jpg">
+<link rel="icon" href="logo.jpg">
+<link rel="apple-touch-icon" href="logo.jpg">
 
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-:root { --primary-color: #5d2e1a; --accent-color: #D4AF37; --bg-color: #1a1a1a; }
-body { margin:0; font-family:Cairo, sans-serif; background:var(--bg-color); color:white; text-align:center; padding-bottom: 220px; }
+:root { --primary: #5d2e1a; --accent: #D4AF37; --bg: #1a1a1a; }
+body { margin:0; font-family:Cairo, sans-serif; background:var(--bg); color:white; text-align:center; padding-bottom: 230px; }
 
-/* تنسيق الهيدر واللوجو */
-header { padding:20px; background: white; border-bottom: 4px solid var(--accent-color); color: var(--primary-color); }
-.logo { width: 150px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-
-/* تنسيق رسالة التعليمات (البوب أب) */
+/* رسالة التثبيت */
 #installGuide {
-    display: none; position: fixed; top: 20%; left: 5%; right: 5%; 
+    display: none; position: fixed; top: 15%; left: 5%; right: 5%; 
     background: white; color: #333; padding: 20px; border-radius: 20px;
-    z-index: 9999; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    border: 3px solid var(--accent-color);
+    z-index: 9999; border: 3px solid var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
-#installGuide h2 { color: var(--primary-color); margin-top: 0; }
-#installGuide ol { text-align: right; padding-right: 20px; line-height: 1.8; }
-.close-guide { background: var(--primary-color); color: white; border: none; padding: 10px 20px; border-radius: 10px; font-weight: bold; width: 100%; margin-top: 10px; }
+.close-btn { background: var(--primary); color: white; border: none; padding: 12px; width: 100%; border-radius: 10px; font-weight: bold; margin-top: 10px; cursor: pointer; }
 
-.category-title { background: var(--primary-color); color: var(--accent-color); padding: 12px; margin: 20px 0 10px 0; font-size: 1.2rem; border-right: 8px solid var(--accent-color); text-align: right; padding-right: 20px; font-weight: bold; }
-.menu { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; padding:12px; }
-.card { background:#262626; border:1px solid #3d3d3d; padding:12px; border-radius:15px; display: flex; flex-direction: column; justify-content: space-between; }
-.price-tag { background: var(--accent-color); color: #000; font-weight: bold; padding: 5px; border-radius: 5px; margin: 10px 0; font-size: 0.9rem; }
-button { background: var(--primary-color); color: white; border: 1px solid var(--accent-color); padding: 10px; font-weight: bold; border-radius: 8px; cursor: pointer; }
+header { padding:20px; background: white; border-bottom: 4px solid var(--accent); color: var(--primary); }
+.logo { width: 180px; border-radius: 10px; }
 
-.cart { position:fixed; bottom:0; width:100%; background:rgba(255,255,255,0.98); padding:15px; border-top:4px solid var(--primary-color); box-shadow: 0 -5px 15px rgba(0,0,0,0.5); box-sizing: border-box; z-index: 1000; color: #333; }
-input { width:48%; padding:10px; margin:2px; border-radius:8px; border:1px solid #ccc; font-family: Cairo; box-sizing: border-box; }
+.category-title { background: var(--primary); color: var(--accent); padding: 12px; margin: 20px 0 10px 0; font-size: 1.2rem; border-right: 8px solid var(--accent); text-align: right; padding-right: 20px; font-weight: bold; }
+
+.menu { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px; padding:10px; }
+.card { background:#262626; border:1px solid #3d3d3d; padding:12px; border-radius:15px; display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
+.card h3 { font-size: 0.95rem; margin: 5px 0; min-height: 40px; }
+.price-box { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin: 10px 0; }
+.price-tag { background: var(--accent); color: #000; font-weight: bold; padding: 4px 8px; border-radius: 5px; font-size: 0.85rem; }
+
+button.add-btn { background: var(--primary); color: white; border: 1px solid var(--accent); padding: 8px 15px; font-weight: bold; border-radius: 8px; cursor: pointer; font-family: Cairo; width: 100%; }
+button.price-btn { background: var(--primary); color: white; border: 1px solid var(--accent); padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; flex: 1; }
+
+.cart { position:fixed; bottom:0; width:100%; background:rgba(255,255,255,0.98); padding:15px; border-top:4px solid var(--primary); box-sizing: border-box; z-index: 1000; color: #333; box-shadow: 0 -5px 20px rgba(0,0,0,0.5); }
+input { width:48%; padding:10px; margin:3px; border-radius:8px; border:1px solid #ccc; font-family: Cairo; box-sizing: border-box; }
 .full-width { width: 98% !important; }
-.send-btn { background: #25D366; color: white; width: 100%; margin-top: 10px; font-size: 1.1rem; border: none; }
+.send-btn { background: #25D366; color: white; width: 100%; margin-top: 10px; font-size: 1.2rem; border: none; height: 50px; font-weight: bold; border-radius: 10px; cursor: pointer; }
 </style>
 </head>
 <body>
 
 <div id="installGuide">
-    <h2>📱 حمل تطبيق دكتور فرن</h2>
-    <p>للوصول السريع للمنيو والطلب في أي وقت:</p>
-    <ol>
-        <li>اضغط على <b>خيارات المتصفح</b> (3 نقاط أو زر المشاركة).</li>
-        <li>اختر <b>"إضافة إلى الشاشة الرئيسية"</b>.</li>
-        <li>سيظهر التطبيق فوراً بجانب تطبيقاتك!</li>
-    </ol>
-    <button class="close-guide" onclick="closeGuide()">فهمت، استمرار للمنيو</button>
+    <h3 style="margin-top:0">تحميل تطبيق دكتور فرن 📱</h3>
+    <p>لطلب أسرع في المرات القادمة: اضغط على زر الخيارات في المتصفح ثم اختر <b>"إضافة إلى الشاشة الرئيسية"</b>.</p>
+    <button class="close-btn" onclick="closeGuide()">حسناً، تصفح المنيو</button>
 </div>
 
 <header>
-    <img src="https://i.ibb.co/C3Ym8PZ/1000353372.jpg" alt="دكتور فرن" class="logo" onerror="this.src='logo.jpg'">
+    <img src="logo.jpg" alt="دكتور فرن" class="logo">
     <p style="margin:5px 0 0 0; font-weight:bold;">طعم البيوت على أصوله 👨‍🍳</p>
 </header>
 
 <div id="fullMenu"></div>
 
 <div class="cart">
-    <div id="cartItems">السلة فارغة..</div>
-    <div style="font-weight:bold; color:var(--primary-color); margin-bottom:5px;" id="total">الإجمالي: 0 ج.م</div>
+    <div id="cartItems" style="font-size: 0.85rem; max-height: 60px; overflow-y: auto; margin-bottom: 8px; color: #555; font-weight: bold;">السلة فارغة.. اطلب الآن</div>
+    <div style="font-weight:bold; color:var(--primary); font-size: 1.1rem; margin-bottom:8px;" id="total">الإجمالي: 0 ج.م</div>
     <input id="name" placeholder="الاسم">
-    <input id="phone" placeholder="الموبايل">
+    <input id="phone" placeholder="الموبايل" type="tel">
     <input id="address" class="full-width" placeholder="العنوان بالتفصيل">
     <button class="send-btn" onclick="sendOrder()">💬 تأكيد الطلب عبر واتساب</button>
 </div>
@@ -78,88 +75,91 @@ input { width:48%; padding:10px; margin:2px; border-radius:8px; border:1px solid
 <script>
 const whatsappNumber = "201122947479"; 
 
-// إظهار رسالة التعليمات بعد ثانيتين من الفتح
-window.onload = function() {
-    setTimeout(() => {
-        if(!localStorage.getItem('guideClosed')) {
-            document.getElementById('installGuide').style.display = 'block';
-        }
-    }, 2000);
-};
-
-function closeGuide() {
-    document.getElementById('installGuide').style.display = 'none';
-    localStorage.setItem('guideClosed', 'true'); // تظهر مرة واحدة فقط للعميل
-}
-
 const menuData = {
     "قسم فراخ دكتور فرن 🍗": [
-        {name: "وجبة نص فراخ فرن (سادة)", price: 250},
-        {name: "وجبة نص فراخ فرن (بطلباتها)", price: 350},
-        {name: "وجبة نص فرخة محمرة سمنة", price: 350},
-        {name: "نص ورقة فراخ بالبطاطس", price: 350}
+        {name: "وجبة نص فراخ فرن (أو) فنش فحم", prices: { "سادة": 250, "بطلباتها": 350 }},
+        {name: "وجبة نص فرخة محمرة في السمنة", prices: { "سادة": 250, "بطلباتها": 350 }},
+        {name: "وجبة نص فرخة مسلوقة علي البخار", prices: { "سادة": 250, "بطلباتها": 350 }},
+        {name: "نص ورقة فراخ بالبطاطس (أو) بالبصل", prices: { "بطلباتها": 350 }}
     ],
-    "قسم المحاشي 🍲": [
+    "قسم محاشي دكتور فرن 🍲": [
         {name: "طبق محشي حجم وسط", price: 310},
         {name: "طبق محشي مشكل", price: 470},
-        {name: "كيلو محشي مشكل بالفراخ", price: 670}
+        {name: "كيلو محشي باللحمة", price: 750},
+        {name: "كيلو محشي بالبط", price: 700},
+        {name: "كيلو محشي بالفراخ", price: 670},
+        {name: "كيلو محشي بالكوارع", price: 600},
+        {name: "طبق ممبار", price: 230}
     ],
     "طواجن ومكرونات 🥘": [
-        {name: "طاجن مكرونة بشاميل", price: 230},
-        {name: "طاجن خضار باللحمة", price: 470},
+        {name: "طاجن مكرونة بشاميل (فراخ أو لحمة)", price: 230},
+        {name: "طاجن مكرونة دكتور فرن (سجق/كفتة)", price: 200},
+        {name: "طاجن خضار باللحمة (بامية/بسلة/بطاطس)", price: 470},
+        {name: "طاجن خضار سادة", price: 150},
         {name: "ورقة تحابيش حرشة", price: 750}
+    ],
+    "مشويات علي الفحم 🔥": [
+        {name: "نص كفتة مشوي ع الفحم", price: 400},
+        {name: "نص طرب مشوي", price: 650},
+        {name: "نص كيلو شيش طاووق", price: 300},
+        {name: "نص فرخة شيش", price: 250},
+        {name: "رغيف حواوشي فحم", price: 75},
+        {name: "فردة حمام", price: 250}
+    ],
+    "أطباق جانبية وشوربة 🥗": [
+        {name: "أرز بالكبدة والقوانص بالخلطة", price: 100},
+        {name: "طبق رقاق رول باللحمة", price: 230},
+        {name: "علبة شوربة (كريمة/حمام/كوارع)", price: 100},
+        {name: "علبة شوربة لسان عصفور أو خضار", price: 65}
     ],
     "عروض دكتور فرن 🎁": [
         {name: "عرض نص فرخة + ربع كفتة + أرز", price: 465},
-        {name: "عرض الصينية العائلية", price: 880},
-        {name: "العرض العملاق (فرخة + كفتة + محشي)", price: 1500}
+        {name: "عرض نص فرخة + طاجن مكرونة", price: 400},
+        {name: "عرض نص فرخة + طبق محشي وسط", price: 500},
+        {name: "عرض الصينية (نص كفتة+نص فرخة+ربع طرب+أرز)", price: 880},
+        {name: "فرخة كاملة+كيلو كفتة+كيلو محشي+أرز", price: 1500}
     ]
 };
 
 let cart = [];
 const fullMenuDiv = document.getElementById("fullMenu");
 
-for (const category in menuData) {
-    fullMenuDiv.innerHTML += `<div class="category-title">${category}</div>`;
-    let categoryDiv = document.createElement("div");
-    categoryDiv.className = "menu";
-    menuData[category].forEach((p) => {
-        categoryDiv.innerHTML += `
-            <div class="card">
-                <h3>${p.name}</h3>
-                <div class="price-tag">${p.price} ج.م</div>
-                <button onclick="add('${p.name}', ${p.price})">إضافة للطلب</button>
-            </div>
-        `;
+for (const cat in menuData) {
+    fullMenuDiv.innerHTML += `<div class="category-title">${cat}</div>`;
+    let div = document.createElement("div"); div.className = "menu";
+    menuData[cat].forEach(item => {
+        let content = `<div class="card"><h3>${item.name}</h3><div class="price-box">`;
+        if(item.prices) {
+            for(let type in item.prices) {
+                content += `<button class="price-btn" onclick="add('${item.name} - ${type}', ${item.prices[type]})">${type}: ${item.prices[type]}ج</button>`;
+            }
+        } else {
+            content += `<div class="price-tag">${item.price} ج.م</div><button class="add-btn" onclick="add('${item.name}', ${item.price})">إضافة للطلب</button>`;
+        }
+        content += `</div></div>`;
+        div.innerHTML += content;
     });
-    fullMenuDiv.appendChild(categoryDiv);
+    fullMenuDiv.appendChild(div);
 }
 
-function add(name, price) {
-    cart.push({name, price});
-    updateCart();
-}
-
+function add(n, p) { cart.push({n, p}); updateCart(); }
 function updateCart() {
-    let div = document.getElementById("cartItems");
+    let itemsDiv = document.getElementById("cartItems");
     let total = 0;
-    if(cart.length === 0) { div.innerHTML = "السلة فارغة"; return; }
-    div.innerHTML = "";
-    cart.forEach(item => { total += item.price; div.innerHTML += `• ${item.name} `; });
+    itemsDiv.innerHTML = cart.length ? "🛒 " + cart.map(i => i.n).join(" | ") : "السلة فارغة.. اطلب الآن";
+    cart.forEach(i => total += i.p);
     document.getElementById("total").innerText = "الإجمالي: " + total + " ج.م";
 }
 
 function sendOrder() {
-    if(cart.length === 0) { alert("السلة فارغة!"); return; }
-    let name = document.getElementById("name").value;
-    let address = document.getElementById("address").value;
-    if(!name || !address) { alert("أكمل البيانات"); return; }
-    let msg = "*طلب جديد من تطبيق دكتور فرن 👨‍🍳*%0A%0A";
-    let total = 0;
-    cart.forEach((item, i) => { msg += (i+1) + "- " + item.name + "%0A"; total += item.price; });
-    msg += "%0A💰 الإجمالي: " + total + " ج.م%0A👤 الاسم: " + name + "%0A📍 العنوان: " + address;
-    window.open("https://wa.me/" + whatsappNumber + "?text=" + msg);
+    let name = document.getElementById("name").value, phone = document.getElementById("phone").value, addr = document.getElementById("address").value;
+    if(!cart.length || !name || !addr || !phone) return alert("برجاء إكمال البيانات واختيار الوجبات");
+    let msg = `*طلب جديد من تطبيق دكتور فرن*%0A%0A` + cart.map((i,idx)=> `*${idx+1}-* ${i.n} (${i.p}ج)`).join("%0A") + `%0A%0A💰 *الإجمالي:* ${total.innerText}%0A👤 *الاسم:* ${name}%0A📞 *الموبايل:* ${phone}%0A📍 *العنوان:* ${addr}`;
+    window.open(`https://wa.me/${whatsappNumber}?text=${msg}`);
 }
+
+window.onload = () => { if(!localStorage.getItem('g')) setTimeout(()=> document.getElementById('installGuide').style.display='block', 2500); };
+function closeGuide() { document.getElementById('installGuide').style.display='none'; localStorage.setItem('g', 't'); }
 </script>
 </body>
 </html>
