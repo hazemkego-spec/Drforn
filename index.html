@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>دكتور فرن - اطلب الآن</title>
+
+<meta name="theme-color" content="#5d2e1a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<link rel="icon" href="https://i.ibb.co/C3Ym8PZ/1000353372.jpg">
+<link rel="apple-touch-icon" href="https://i.ibb.co/C3Ym8PZ/1000353372.jpg">
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root { --primary-color: #5d2e1a; --accent-color: #D4AF37; --bg-color: #1a1a1a; }
+body { margin:0; font-family:Cairo, sans-serif; background:var(--bg-color); color:white; text-align:center; padding-bottom: 220px; }
+
+/* تنسيق الهيدر واللوجو */
+header { padding:20px; background: white; border-bottom: 4px solid var(--accent-color); color: var(--primary-color); }
+.logo { width: 150px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+
+/* تنسيق رسالة التعليمات (البوب أب) */
+#installGuide {
+    display: none; position: fixed; top: 20%; left: 5%; right: 5%; 
+    background: white; color: #333; padding: 20px; border-radius: 20px;
+    z-index: 9999; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 3px solid var(--accent-color);
+}
+#installGuide h2 { color: var(--primary-color); margin-top: 0; }
+#installGuide ol { text-align: right; padding-right: 20px; line-height: 1.8; }
+.close-guide { background: var(--primary-color); color: white; border: none; padding: 10px 20px; border-radius: 10px; font-weight: bold; width: 100%; margin-top: 10px; }
+
+.category-title { background: var(--primary-color); color: var(--accent-color); padding: 12px; margin: 20px 0 10px 0; font-size: 1.2rem; border-right: 8px solid var(--accent-color); text-align: right; padding-right: 20px; font-weight: bold; }
+.menu { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; padding:12px; }
+.card { background:#262626; border:1px solid #3d3d3d; padding:12px; border-radius:15px; display: flex; flex-direction: column; justify-content: space-between; }
+.price-tag { background: var(--accent-color); color: #000; font-weight: bold; padding: 5px; border-radius: 5px; margin: 10px 0; font-size: 0.9rem; }
+button { background: var(--primary-color); color: white; border: 1px solid var(--accent-color); padding: 10px; font-weight: bold; border-radius: 8px; cursor: pointer; }
+
+.cart { position:fixed; bottom:0; width:100%; background:rgba(255,255,255,0.98); padding:15px; border-top:4px solid var(--primary-color); box-shadow: 0 -5px 15px rgba(0,0,0,0.5); box-sizing: border-box; z-index: 1000; color: #333; }
+input { width:48%; padding:10px; margin:2px; border-radius:8px; border:1px solid #ccc; font-family: Cairo; box-sizing: border-box; }
+.full-width { width: 98% !important; }
+.send-btn { background: #25D366; color: white; width: 100%; margin-top: 10px; font-size: 1.1rem; border: none; }
+</style>
+</head>
+<body>
+
+<div id="installGuide">
+    <h2>📱 حمل تطبيق دكتور فرن</h2>
+    <p>للوصول السريع للمنيو والطلب في أي وقت:</p>
+    <ol>
+        <li>اضغط على <b>خيارات المتصفح</b> (3 نقاط أو زر المشاركة).</li>
+        <li>اختر <b>"إضافة إلى الشاشة الرئيسية"</b>.</li>
+        <li>سيظهر التطبيق فوراً بجانب تطبيقاتك!</li>
+    </ol>
+    <button class="close-guide" onclick="closeGuide()">فهمت، استمرار للمنيو</button>
+</div>
+
+<header>
+    <img src="https://i.ibb.co/C3Ym8PZ/1000353372.jpg" alt="دكتور فرن" class="logo" onerror="this.src='logo.jpg'">
+    <p style="margin:5px 0 0 0; font-weight:bold;">طعم البيوت على أصوله 👨‍🍳</p>
+</header>
+
+<div id="fullMenu"></div>
+
+<div class="cart">
+    <div id="cartItems">السلة فارغة..</div>
+    <div style="font-weight:bold; color:var(--primary-color); margin-bottom:5px;" id="total">الإجمالي: 0 ج.م</div>
+    <input id="name" placeholder="الاسم">
+    <input id="phone" placeholder="الموبايل">
+    <input id="address" class="full-width" placeholder="العنوان بالتفصيل">
+    <button class="send-btn" onclick="sendOrder()">💬 تأكيد الطلب عبر واتساب</button>
+</div>
+
+<script>
+const whatsappNumber = "201122947479"; 
+
+// إظهار رسالة التعليمات بعد ثانيتين من الفتح
+window.onload = function() {
+    setTimeout(() => {
+        if(!localStorage.getItem('guideClosed')) {
+            document.getElementById('installGuide').style.display = 'block';
+        }
+    }, 2000);
+};
+
+function closeGuide() {
+    document.getElementById('installGuide').style.display = 'none';
+    localStorage.setItem('guideClosed', 'true'); // تظهر مرة واحدة فقط للعميل
+}
+
+const menuData = {
+    "قسم فراخ دكتور فرن 🍗": [
+        {name: "وجبة نص فراخ فرن (سادة)", price: 250},
+        {name: "وجبة نص فراخ فرن (بطلباتها)", price: 350},
+        {name: "وجبة نص فرخة محمرة سمنة", price: 350},
+        {name: "نص ورقة فراخ بالبطاطس", price: 350}
+    ],
+    "قسم المحاشي 🍲": [
+        {name: "طبق محشي حجم وسط", price: 310},
+        {name: "طبق محشي مشكل", price: 470},
+        {name: "كيلو محشي مشكل بالفراخ", price: 670}
+    ],
+    "طواجن ومكرونات 🥘": [
+        {name: "طاجن مكرونة بشاميل", price: 230},
+        {name: "طاجن خضار باللحمة", price: 470},
+        {name: "ورقة تحابيش حرشة", price: 750}
+    ],
+    "عروض دكتور فرن 🎁": [
+        {name: "عرض نص فرخة + ربع كفتة + أرز", price: 465},
+        {name: "عرض الصينية العائلية", price: 880},
+        {name: "العرض العملاق (فرخة + كفتة + محشي)", price: 1500}
+    ]
+};
+
+let cart = [];
+const fullMenuDiv = document.getElementById("fullMenu");
+
+for (const category in menuData) {
+    fullMenuDiv.innerHTML += `<div class="category-title">${category}</div>`;
+    let categoryDiv = document.createElement("div");
+    categoryDiv.className = "menu";
+    menuData[category].forEach((p) => {
+        categoryDiv.innerHTML += `
+            <div class="card">
+                <h3>${p.name}</h3>
+                <div class="price-tag">${p.price} ج.م</div>
+                <button onclick="add('${p.name}', ${p.price})">إضافة للطلب</button>
+            </div>
+        `;
+    });
+    fullMenuDiv.appendChild(categoryDiv);
+}
+
+function add(name, price) {
+    cart.push({name, price});
+    updateCart();
+}
+
+function updateCart() {
+    let div = document.getElementById("cartItems");
+    let total = 0;
+    if(cart.length === 0) { div.innerHTML = "السلة فارغة"; return; }
+    div.innerHTML = "";
+    cart.forEach(item => { total += item.price; div.innerHTML += `• ${item.name} `; });
+    document.getElementById("total").innerText = "الإجمالي: " + total + " ج.م";
+}
+
+function sendOrder() {
+    if(cart.length === 0) { alert("السلة فارغة!"); return; }
+    let name = document.getElementById("name").value;
+    let address = document.getElementById("address").value;
+    if(!name || !address) { alert("أكمل البيانات"); return; }
+    let msg = "*طلب جديد من تطبيق دكتور فرن 👨‍🍳*%0A%0A";
+    let total = 0;
+    cart.forEach((item, i) => { msg += (i+1) + "- " + item.name + "%0A"; total += item.price; });
+    msg += "%0A💰 الإجمالي: " + total + " ج.م%0A👤 الاسم: " + name + "%0A📍 العنوان: " + address;
+    window.open("https://wa.me/" + whatsappNumber + "?text=" + msg);
+}
+</script>
+</body>
+</html>
